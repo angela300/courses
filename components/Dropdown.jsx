@@ -3,10 +3,9 @@ import React, { useState, useEffect } from "react";
 import { AiOutlineCaretDown, AiOutlineCaretUp } from "react-icons/ai";
 import Image from "next/image";
 import { IoFilter } from "react-icons/io5";
+import styles from "../styles/dropdown.module.css";
 
-const isMobile = window.innerWidth <= 768;
-
-function Dropdown({ name }) {
+export default function Dropdown({ name }) {
     console.log("Dropdown name:", name);
     const [isOpen, setIsOpen] = useState(false);
     const [data, setData] = useState([]);
@@ -83,12 +82,11 @@ function Dropdown({ name }) {
             : allsubjectcourses.filter((p) => categoryFilters.has(p.type));
 
     return (
-        <div>
-            <div className="p-2" style={{ backgroundColor: '#d3d3d3', fontSize: isMobile ? "27px" : "initial" }}>
+            <div className={styles.div1}>
                 <button onClick={() => setIsOpen(prev => !prev)}
-                    className={`p-4 ${isMobile ? "pt-4 pb-4" : "pt-1 pb-1"} w-full flex items-center justify-between border-b-2`} style={{ borderColor: "gray" }}>
+                    className={styles.button1}>
 
-                    <div className="flex items-center">
+                    <div className={styles.div10}>
                         <Image
                             src={imgsrc}
                             width={30}
@@ -96,7 +94,7 @@ function Dropdown({ name }) {
                             alt="Picture of the author"
                             className="rounded-full"
                         />
-                        <span className="ml-2">{displayName}</span>
+                        <span className={styles.span1}>{displayName}</span>
                     </div>
                     {isOpen ? (
                         <AiOutlineCaretUp className="h-8" />
@@ -106,14 +104,14 @@ function Dropdown({ name }) {
                 </button>
 
                 {isOpen &&
-                    <div style={{ display: "flex", flexDirection: isMobile ? "column" : "row", gap: "10px" }}>
-                        <div style={{paddingTop:"5px", paddingBottom:"5px"}}>
-                            <div style={{ display: "flex", flexDirection: "row", gap: "10px", alignItems: "center" }}>
+                    <div className={styles.div2}>
+                        <div  style={{paddingTop:"5px", paddingBottom:"5px"}}>
+                            <div className={styles.div4}>
                                 <IoFilter />
                                 <span>Filter by</span>
                             </div>
-                            <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "3px" }}>
-                                <div className="d-flex justify-content-evenly">
+                            <div className={styles.div5}>
+                                <div className={styles.div6}>
                                     {categories.map((elm, index) => {
                                         return (
                                             <div className="form-check ms-2" key={index}>
@@ -132,19 +130,19 @@ function Dropdown({ name }) {
                                 </div>
                             </div>
                         </div>
-                        <div style={{paddingTop:"5px", paddingBottom:"5px"}}>
+                        <div style={{paddingTop:"5px", paddingBottom:"5px"}} >
                             <div>
                                 <span>Showing courses</span>
                             </div>
-                            <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "3px" }}>
+                            <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "3px"}}>
                                 <div className="d-flex flex-wrap">
                                     {filteredProducts.map((prod) => {
                                         return (
-                                            <div className="card m-3" style={{ width: isMobile ? '100%' : '400px' }} key={prod.id}>
+                                            <div className="card" style={{ width:'400px' }} key={prod.id}>
                                                 <div className="card-body">
-                                                    <h3 className="font-bold">{prod.title}</h3>
+                                                    <h3 className="font-bold" >{prod.title}</h3>
                                                     <p>{prod.description}</p>
-                                                    <p className="font-bold" style={{ fontSize: isMobile ? "15px" : "10px" }}>Category: {prod.type}</p>
+                                                    <p className="font-bold" style={{ fontSize: "10px" }}>Category: {prod.type}</p>
                                                 </div>
                                             </div>
                                         );
@@ -155,10 +153,7 @@ function Dropdown({ name }) {
                     </div>
                 }
             </div>
-        </div>
     );
 }
-
-export default Dropdown;
 
 

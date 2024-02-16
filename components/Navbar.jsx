@@ -20,14 +20,14 @@ export default function Navbar() {
           </div>
         </form>
         <p>Logo Here</p>
-        <Link className={styles.link1} href={"/"}>
+        <Link className={styles.link1} href={""}>
           <span>Donate</span>
           <BsBoxArrowUpRight />
         </Link>
-        <Link className={styles.link2} href={"/"}>
+        <Link className={styles.link2} href={""}>
           Login
         </Link>
-        <Link className={styles.link3} href={"/"}>
+        <Link className={styles.link3} href={""}>
           Sign up
         </Link>
       </nav>
